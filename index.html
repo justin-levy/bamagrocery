@@ -1,16 +1,14 @@
 <html>
-<body>
-
-<form action='insert.php' method='post'>
-ID: <input type='text' name='id' />
-Fname: <input type='text' name='fname' />
-Lname: <input type='text' name='lname' />
-Uname: <input type='text' name='uname' />
-Password: <input type='text' name='password' />
-Utype: <input type='text' name='utype' />
-Email: <input type='text' name='email' />
-<input type='submit' />
-</form>
-
-</body>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>Login Page</h1>
+		<form action='user.php' method='post'>
+			<div>Username: <input type='text' name='username' /></div>
+			<div>Password: <input type='text' name='password' /></div>
+			<input type='submit' />
+			<input type="button" onclick="window.location.href = 'insert.html';" value="Register"/>
+		</form>
+	</body>
 </html>

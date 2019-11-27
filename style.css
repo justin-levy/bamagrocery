@@ -1,0 +1,29 @@
+body {
+	font-family: "Optima";
+}
+
+h1 {
+	text-align: center;
+}
+
+form {
+	text-align: left;
+	width: 40%;
+	position: relative;
+	left: 30%;
+	background: #DEDEDE;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 30px;
+	border-radius: 5px;
+}
+
+button, form input {
+	border: none;
+	background: white;
+	border-radius: 5px;
+	padding: 10px 15px;
+	box-sizing: border-box;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

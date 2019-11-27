@@ -5,30 +5,29 @@
 		die( "Connection failed: ".$conn->connect_error);
 	}
 
-	$id = $_POST['id'];
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$uname = $_POST['uname'];
+	$username = $_POST['username'];
 	$password = $_POST['password'];
-	$utype = $_POST['utype'];
+	$user_type = $_POST['user_type'];
 	$email = $_POST['email'];
+	$first_name = $_POST['first_name'];
+	$last_name = $_POST['last_name'];
 	
+	$query = "SELECT * FROM USER WHERE username ='$username'";
+	$result = $conn->query($query);
+	if ($result->num_rows >= 1) {
+		header( "Location: insert.html" );
+		exit ;
+	}
 	
-	/*
-	echo $id + '</br>';
-	echo $fname;
-	echo $lname;
-	echo $uname;
-	echo $password;
-	echo $utype;
-	echo $email;
-	*/
+	if ($user_type != 'b' && $user_type != 'd' && $user_type != 'm' && $user_type != 'B' && $user_type != 'D' && $user_type != 'M') {
+		header( "Location: insert.html" );
+		exit ;
+	}
 	
-	$insert = "INSERT INTO USER (Id, Fname, Lname, Uname, Password, Utype, Email) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	//echo $insert;
+	$insert = "INSERT INTO USER (username, password, user_type, email, first_name, last_name) VALUES (?, ?, ?, ?, ?, ?)";
 	
 	$stmt = $conn->prepare($insert);
-	$stmt->bind_param("issssss", $id, $fname, $lname, $uname, $password, $utype, $email);
+	$stmt->bind_param("ssssss", $username, $password, $user_type, $email, $first_name, $last_name);
 	//echo $insert;
 	$stmt->execute();
 	
@@ -38,6 +37,6 @@
 
 <html>
 <body>
-<h1>User Added:  <?php echo $fname ?></h1>
+<h1>User Added:  <?php echo $first_name ?></h1>
 </body>
 </html>
