@@ -15,12 +15,12 @@
 	$query = "SELECT * FROM USER WHERE username ='$username'";
 	$result = $conn->query($query);
 	if ($result->num_rows >= 1) {
-		header( "Location: insert.html" );
+		header( "Location: register_basic.php" );
 		exit ;
 	}
 	
 	if ($user_type != 'b' && $user_type != 'd' && $user_type != 'm' && $user_type != 'B' && $user_type != 'D' && $user_type != 'M') {
-		header( "Location: insert.html" );
+		header( "Location: register_basic.php" );
 		exit ;
 	}
 	
@@ -33,10 +33,17 @@
 	
 	
 	$conn->close();
-?>
 
-<html>
-<body>
-<h1>User Added:  <?php echo $first_name ?></h1>
-</body>
-</html>
+	if ($user_type == 'b' || $user_type == 'B') {
+		header( "Location: /index.html" );
+		exit ;
+	}
+	if ($user_type == 'd' || $user_type == 'D') {
+		header( "Location: /index.html" );
+		exit ;
+	}
+	if ($user_type == 'm' || $user_type == 'M') {
+		header( "Location: /index.html" );
+		exit ;
+	}
+?>
