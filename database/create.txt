@@ -1,0 +1,132 @@
+CREATE TABLE SYSTEMINFORMATION (
+system_id INTEGER, 
+user_codes INTEGER,
+PRIMARY KEY(system_id)
+);
+
+CREATE TABLE USER(
+username VARCHAR(30),
+user_password  VARCHAR(20),
+user_type CHAR(1),
+email VARCHAR(50),
+first_name VARCHAR(30),
+last_name VARCHAR(30),
+PRIMARY KEY(username)
+);
+
+CREATE TABLE ADDRESS(
+id INTEGER,
+street VARCHAR(50),
+city VARCHAR(20),
+state VARCHAR(20),
+zip_code INTEGER,
+PRIMARY KEY(id)
+);
+
+CREATE TABLE GROCERYSTORE(
+store_id INTEGER,
+address_id INTEGER,
+store_name VARCHAR(20),
+opening_time TIME,
+closing_time TIME,
+phone CHAR(10),
+PRIMARY KEY(store_id),
+FOREIGN KEY(address_id) REFERENCES ADDRESS(id) ON DELETE CASCADE
+);
+
+CREATE TABLE ITEM(
+item_id INTEGER,
+item_name VARCHAR(25),
+food_group VARCHAR(10),
+exp_date DATE,
+quantity INTEGER,
+listed_price FLOAT,
+wholesale_price FLOAT,
+description VARCHAR(200),
+PRIMARY KEY(item_id)
+);
+
+
+CREATE TABLE BUYER(
+username VARCHAR(30),
+address INTEGER,
+phone CHAR(10),
+default_store_id INTEGER,
+default_payment VARCHAR(25),
+PRIMARY KEY(username),
+FOREIGN KEY(username) REFERENCES USER(username) ON DELETE CASCADE,
+FOREIGN KEY(address) REFERENCES ADDRESS(id) ON DELETE CASCADE,
+FOREIGN KEY(default_store_id) REFERENCES GROCERYSTORE(store_id) ON DELETE CASCADE
+);
+
+CREATE TABLE MANAGES(
+username VARCHAR(30),
+store_address INTEGER,
+PRIMARY KEY(username, store_address),
+FOREIGN KEY(username) REFERENCES USER(username) ON DELETE CASCADE,
+FOREIGN KEY(store_address) REFERENCES ADDRESS(id) ON DELETE CASCADE
+);
+
+CREATE TABLE PAYMENTS(
+username VARCHAR(30),
+payment_name VARCHAR(20),
+account_number INTEGER,
+routing_number INTEGER,
+PRIMARY KEY(username, payment_name),
+FOREIGN KEY(username) REFERENCES BUYER(username) ON DELETE CASCADE
+);
+
+CREATE TABLE ORDERS (
+order_id INTEGER,
+delivery_instructions VARCHAR(200),
+delivery_time TIME,
+order_placed_date DATE,
+order_placed_time TIME,
+PRIMARY KEY(order_id)
+);
+
+CREATE TABLE ORDERBY(
+order_id INTEGER,
+buyer_username VARCHAR(30),
+PRIMARY KEY(order_id),
+FOREIGN KEY(order_id) REFERENCES ORDERS(order_id) ON DELETE CASCADE,
+FOREIGN KEY(buyer_username) REFERENCES USER(username) ON DELETE CASCADE
+);
+
+CREATE TABLE SELECTITEM(
+order_id INTEGER,
+quantity INTEGER,
+item_id INTEGER,
+PRIMARY KEY(order_id, item_id),
+FOREIGN KEY(order_id) REFERENCES ORDERS(order_id) ON DELETE CASCADE,
+FOREIGN KEY(item_id) REFERENCES ITEM(item_id) ON DELETE CASCADE
+);
+
+CREATE TABLE  ORDERFROM(
+order_id INTEGER,
+store_id INTEGER,
+PRIMARY KEY(order_id),
+FOREIGN KEY(order_id) REFERENCES ORDERS(order_id) ON DELETE CASCADE,
+FOREIGN KEY(store_id) REFERENCES GROCERYSTORE(store_id) ON DELETE CASCADE
+);
+
+CREATE TABLE SOLDAT(
+item_id INTEGER,
+store_id INTEGER,
+PRIMARY KEY(item_id, store_id),
+FOREIGN KEY(item_id) REFERENCES ITEM(item_id) ON DELETE CASCADE,
+FOREIGN KEY(store_id) REFERENCES GROCERYSTORE(store_id) ON DELETE CASCADE
+);
+
+CREATE TABLE DELIVEREDBY(
+order_id INTEGER,
+deliverer_username VARCHAR(30),
+delivery_time TIME,
+delivery_date DATE,
+is_delivered BIT,
+PRIMARY KEY(order_id),
+FOREIGN KEY(order_id) REFERENCES ORDERS(order_id) ON DELETE CASCADE,
+FOREIGN KEY(deliverer_username) REFERENCES USER(username) ON DELETE CASCADE
+);
+
+
