@@ -26,7 +26,7 @@
 		$email = $row["email"];
 		$first_name = $row["first_name"];
 		$last_name = $row["last_name"];
-		
+
 		if ($user_type == 'b' || $user_type == 'B') {
 			echo 'Buyer';
 		}
@@ -40,12 +40,12 @@
 </h1>
 
 <?php
-		
+
 		echo "Welcome, ";
 		echo $first_name;
 	}
 	else {
-		header( "Location: index.html" );
+		header( "Location: index.php" );
 		exit ;
 	}
 	$conn->close();
