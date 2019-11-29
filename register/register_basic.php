@@ -25,7 +25,7 @@
 			<div>Last Name: <input type='text' name='last_name' required maxlength="30"/></div>
 			<?php
 				if ($user_type == "Buyer" || $user_type == "Manager") {
-					echo "<div>Phone Number: <input type='text' name='phone' required maxlength=\"10\"/></div>";
+					echo "<div>Phone Number: <input type='text' name='phone' required minlength=\"10\" maxlength=\"10\"/></div>";
 				}
 				if ($user_type == "Deliverer" || $user_type == "Manager") {
 					echo "<div>Confirmation Code: <input type='text' name='confirmation_code' required maxlength=\"11\"/></div>";

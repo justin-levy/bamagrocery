@@ -4,6 +4,9 @@
 	</head>
 	<body>
 		<h1>Buyer Functionality</h1>
+		<?php
+			echo $_POST['username'];
+		?>
 		<form method="" action="">
 			<input type="button" onclick="window.location.href = '';" value="New Order"/>
 			<input type="button" onclick="window.location.href = '';" value="Order History"/>

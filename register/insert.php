@@ -57,7 +57,7 @@
 		exit ;
 	}
 	if ($user_type == 'm' || $user_type == 'M') {
-		header( "Location: ../index.php" );
+		header( "Location: register_manager.php?username=$username" );
 		exit ;
 	}
 ?>
