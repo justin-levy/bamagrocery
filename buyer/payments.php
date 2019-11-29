@@ -1,9 +1,12 @@
 <?php
+	session_start();
+	$username = $_SESSION['username'];
+
 	$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
 	if ($conn->connect_error) {
 		die( "Connection failed: ".$conn->connect_error);
 	}
-	$username = $_GET['username'];
+
 	$query = "SELECT default_payment FROM BUYER WHERE username = '$username'";
 	$result = $conn->query($query);
 	if ($result->num_rows == 1) {
@@ -50,15 +53,15 @@
 						}
 					}
 					else {
-						header( "Location: new_payment.php?username=$username" );
+						header( "Location: new_payment.php" );
 						exit ;
 					}
 					$conn->close();
 				?>
 			</table>
 			<input type="submit"  value="Confirm Order"/>
-			<input type="button" onclick="window.location.href = '<?php echo "new_payment.php?username=$username" ?>';" value="Use Different Payment"/>
-			<input type="button" onclick="window.location.href = '<?php echo "buyer.php?username=$username" ?>';" value="Back"/>
+			<input type="button" onclick="window.location.href = '<?php echo "new_payment.php" ?>';" value="Use Different Payment"/>
+			<input type="button" onclick="window.location.href = '<?php echo "buyer.php" ?>';" value="Back"/>
 		</form>
 
 </body>

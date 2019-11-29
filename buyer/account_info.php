@@ -1,9 +1,12 @@
 <?php
+	session_start();
+	$username = $_SESSION['username'];
+
 	$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
 	if ($conn->connect_error) {
 		die( "Connection failed: ".$conn->connect_error);
 	}
-	$username = $_GET['username'];
+
 	$query = "SELECT * FROM USER WHERE username = '$username'";
 	$result = $conn->query($query);
 	if ($result->num_rows == 1) {
@@ -33,11 +36,7 @@
 	</head>
 	<body>
 		<h1>Buyer Account Information</h1>
-		<?php
-			$username = $_GET['username'];
-			
-			
-		?>
+
 		<form method="" action="">
 			<form action='' method='post'>
 			<div>Username: <input type='text' name='username' required maxlength="30" readonly value="<?php echo $username; ?>"/></div>
@@ -53,7 +52,7 @@
 				}
 			?>
 			<input type='submit' />
-			<input type="button" onclick="window.location.href = '<?php echo "buyer.php?username=$username" ?>';" value="Back"/>
+			<input type="button" onclick="window.location.href = '<?php echo "buyer.php" ?>';" value="Back"/>
 		</form>
 		</form>
 	</body>
