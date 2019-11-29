@@ -29,7 +29,7 @@
 
 		if ($user_type == 'b' || $user_type == 'B') {
 			echo 'Buyer';
-			header( "Location: buyer/buyer.html" );
+			header( "Location: buyer/buyer.php" );
 		exit ;
 		}
 		if ($user_type == 'd' || $user_type == 'D') {
@@ -47,7 +47,7 @@
 		echo $first_name;
 	}
 	else {
-		header( "Location: index.php" );
+		header( "Location: index.php?error=Invalid%20Login" );
 		exit ;
 	}
 	$conn->close();
