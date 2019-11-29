@@ -39,7 +39,7 @@
 							$routing_number = $row["routing_number"];
 				?>
 				<tr>
-					<td><input type="radio" name="payment" value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo "checked"; ?>></td>
+					<td><input type="radio" name="payment" value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo "checked"; ?> required></td>
 					<td><?php echo $username; ?></td>
 					<td><?php echo $payment_name; ?></td>
 					<td><?php echo $account_number; ?></td>
@@ -49,10 +49,14 @@
 				<?php
 						}
 					}
+					else {
+						header( "Location: new_payment.php?username=$username" );
+						exit ;
+					}
 					$conn->close();
 				?>
 			</table>
-			<input type="button" onclick="window.location.href = '';" value="Confirm Order"/>
+			<input type="submit"  value="Confirm Order"/>
 			<input type="button" onclick="window.location.href = '<?php echo "new_payment.php?username=$username" ?>';" value="Use Different Payment"/>
 			<input type="button" onclick="window.location.href = '<?php echo "buyer.php?username=$username" ?>';" value="Back"/>
 		</form>

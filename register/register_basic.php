@@ -1,6 +1,16 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="../style.css">
+		<script> 
+			function checkPassword(form) { 
+				password1 = form.user_password.value; 
+				password2 = form.confirm_password.value;     
+				if (password1 != password2) { 
+					alert ("Passwords were not the same!");
+					return false; 
+				}
+			}
+        </script> 
 	</head>
 	<body>
 		<h1> Register
@@ -11,7 +21,7 @@
 		</h1>
 		<h2>
 		</h2>
-		<form action='insert.php' method='post'>
+		<form onsubmit='return checkPassword(this)' action='insert.php' method='post'>
 			<div>Username: <input type='text' name='username' required maxlength="30"/></div>
 			<div>Password: <input type='text' name='user_password' required maxlength="20"/></div>
 			<div>Confirm Password: <input type='text' name='confirm_password' required maxlength="20"/></div>
