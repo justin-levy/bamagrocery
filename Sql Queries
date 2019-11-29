@@ -65,3 +65,63 @@ Updates:
 Deletes:
 
 Selects:
+
+(Buyer Account Information Page 12)
+$select = "SELECT * FROM USER WHERE username=?");
+$stmt = $conn->prepare($select);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$res = $stmt->get_result();
+$row = $res->fetch_assoc();
+$first_name = $row['first_name'];
+$last_name = $row['last_name'];
+$email = $row['email'];
+
+$select = "SELECT * FROM BUYER WHERE username=?;";
+$stmt = $conn->prepare($select);
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$res = $stmt->get_result();
+$row = $res->fetch_assoc();
+$phone = $row['phone'];
+$addressID = $row['address'];
+$storeID = $row['default_store_id'];
+
+$select = "SELECT * FROM ADDRESS WHERE id=?;";
+$stmt = $conn->prepare($select);
+$stmt->bind_param("i", $addressID);
+$stmt->execute();
+$res = $stmt->get_result();
+$row = $res->fetch_assoc();
+$buyerStreet = $row['street'];
+$buyerCity = $row['city'];
+$buyerState = $row['state'];
+$buyerZip = $row['zip_code'];
+
+$select = "SELECT * FROM GROCERYSTORE WHERE store_id=?;";
+$stmt = $conn->prepare($select);
+$stmt->bind_param("i", $storeID);
+$stmt->execute();
+$res = $stmt->get_result();
+$row = $res->fetch_assoc();
+$storeName = $row['store_name'];
+$storeAddressID = $row['address_id'];
+
+$select "SELECT * FROM ADDRESS WHERE id=?;";
+$stmt = $conn->prepare($select);
+$stmt->bind_param("i", %storeAddressID);
+$stmt->execute();
+$res = $stmt->get_result();
+$row = $res->fetch_assoc();
+$storeAddress = $row['street'];
+
+$select "SELECT * FROM PAYMENTS WHERE id=?;";
+$stmt = $conn->prepare($select);
+$stmt->bind_param("s", %username);
+$stmt->execute();
+$res = $stmt->get_result();
+$row = $res->fetch_assoc();
+$accountNum = $row['account_number'];
+$routingNum = $row['routing_number'];
+
+$conn->close();
