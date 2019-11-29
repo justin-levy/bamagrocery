@@ -29,7 +29,7 @@
 
 		if ($user_type == 'b' || $user_type == 'B') {
 			echo 'Buyer';
-			header( "Location: buyer/buyer.php" );
+			header( "Location: buyer/buyer.php?username=$inUsername" );
 		exit ;
 		}
 		if ($user_type == 'd' || $user_type == 'D') {

@@ -5,13 +5,13 @@
 	<body>
 		<h1>Buyer Functionality</h1>
 		<?php
-			echo $_POST['username'];
+			$username = $_GET['username'];
 		?>
 		<form method="" action="">
 			<input type="button" onclick="window.location.href = '';" value="New Order"/>
 			<input type="button" onclick="window.location.href = '';" value="Order History"/>
 			<input type="button" onclick="window.location.href = '';" value="Account Information"/>
-			<input type="button" onclick="window.location.href = '';" value="Payment Methods"/>
+			<input type="button" onclick="window.location.href = '<?php echo "payments.php?username=$username" ?>';" value="Payment Methods"/>
 			<input type="button" onclick="window.location.href = '../index.php';" value="Back"/>
 		</form>
 	</body>
