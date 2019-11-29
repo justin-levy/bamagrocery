@@ -12,21 +12,26 @@
 	$email = $_POST['email'];
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
+	
+	$user_type_long;
+	if ($user_type == 'b') $user_type_long = "Buyer";
+	if ($user_type == 'd') $user_type_long = "Deliverer";
+	if ($user_type == 'm') $user_type_long = "Manager";
 
 	if ($user_password != $confirm_password) {
-		header( "Location: register_basic.php" );
+		header( "Location: register_basic.php?submit=$user_type_long" );
 		exit ;
 	}
 
 	$query = "SELECT * FROM USER WHERE username ='$username'";
 	$result = $conn->query($query);
 	if ($result->num_rows >= 1) {
-		header( "Location: register_basic.php" );
+		header( "Location: register_basic.php?submit=$user_type_long" );
 		exit ;
 	}
 
 	if ($user_type != 'b' && $user_type != 'd' && $user_type != 'm' && $user_type != 'B' && $user_type != 'D' && $user_type != 'M') {
-		header( "Location: register_basic.php" );
+		header( "Location: register_basic.php?submit=$user_type_long" );
 		exit ;
 	}
 

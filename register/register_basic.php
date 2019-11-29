@@ -12,23 +12,23 @@
 		<h2>
 		</h2>
 		<form action='insert.php' method='post'>
-			<div>Username: <input type='text' name='username' /></div>
-			<div>Password: <input type='text' name='user_password' /></div>
-			<div>Confirm Password: <input type='text' name='confirm_password' /></div>
+			<div>Username: <input type='text' name='username' required maxlength="30"/></div>
+			<div>Password: <input type='text' name='user_password' required maxlength="20"/></div>
+			<div>Confirm Password: <input type='text' name='confirm_password' required maxlength="20"/></div>
 			<input type="hidden" name="user_type" value="<?php
 				if ($user_type == "Buyer") echo "b";
 				if ($user_type == "Deliverer") echo "d";
 				if ($user_type == "Manager") echo "m";
 			?>">
-			<div>Email: <input type='text' name='email' /></div>
-			<div>First Name: <input type='text' name='first_name' /></div>
-			<div>Last Name: <input type='text' name='last_name' /></div>
+			<div>Email: <input type='text' name='email' required maxlength="50"/></div>
+			<div>First Name: <input type='text' name='first_name' required maxlength="30"/></div>
+			<div>Last Name: <input type='text' name='last_name' required maxlength="30"/></div>
 			<?php
 				if ($user_type == "Buyer" || $user_type == "Manager") {
-					echo "<div>Phone Number: <input type='text' name='phone' /></div>";
+					echo "<div>Phone Number: <input type='text' name='phone' required maxlength=\"10\"/></div>";
 				}
 				if ($user_type == "Deliverer" || $user_type == "Manager") {
-					echo "<div>Confirmation Code: <input type='text' name='confirmation_code' /></div>";
+					echo "<div>Confirmation Code: <input type='text' name='confirmation_code' required maxlength=\"11\"/></div>";
 				}
 			?>
 			<input type='submit' />
