@@ -9,6 +9,8 @@
 					alert ("Passwords were not the same!");
 					return false; 
 				}
+				
+				//new_username = form.username.value;
 			}
         </script> 
 	</head>

@@ -10,7 +10,7 @@
 		<form method="" action="">
 			<input type="button" onclick="window.location.href = '';" value="New Order"/>
 			<input type="button" onclick="window.location.href = '';" value="Order History"/>
-			<input type="button" onclick="window.location.href = '';" value="Account Information"/>
+			<input type="button" onclick="window.location.href = '<?php echo "account_info.php?username=$username" ?>';" value="Account Information"/>
 			<input type="button" onclick="window.location.href = '<?php echo "payments.php?username=$username" ?>';" value="Payment Methods"/>
 			<input type="button" onclick="window.location.href = '../index.php';" value="Back"/>
 		</form>
