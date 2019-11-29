@@ -1,0 +1,67 @@
+Inserts:
+
+$insert = "INSERT INTO GROCERYSTORE (store_id, address_id, store_name, opening_time, closing_time, phone) VALUE (?, ?, ?, FROM_UNIXTIME(?), FORM_UNIXTIME(?), ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("iisiis", $store_id, $address_id, $store_name, $opening_time, $closing_time, $phone);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO ITEM (item_id, item_name, food_group, exp_date, quantity, listed_price, wholesale_price, description) VALUE (?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?, ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("issiidds", $item_id, $item_name, $food_group, $exp_date, $quantity, $listed_price, $wholesale_price, $description);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO MANAGES (username, store_address) VALUE (?, ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("si", $username, $store_address);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO PAYMENTS (username, payment_name, account_number, routing_number) VALUE (?, ?, ?, ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("ssii", $username, $payment_name, $account_number, $routing_number);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO ORDERS (order_id, delivery_instructions, delivery_time, order_placed_date, order_placed_time) VALUE (?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), FROM_UNIXTIME(?));";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("isiii", $order_id, $delivery_instructions, $delivery_time, $order_placed_date, $order_placed_time);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO ORDERBY (order_id, buyer_username) VALUE (?, ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("is", $order_id, $buyer_username);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO SELECTITEM (order_id, quantity, item_id) VALUE (?, ?, ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("iii", $order_id, $quantity, $item_id);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO ORDERFROM (order_id, store_id) VALUE (?, ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("ii", $order_id, $store_id);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO SOLDAT (item_id, store_id) VALUE (?, ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("ii", $item_id, $store_id);
+$stmt->execute();
+$conn->close();
+
+$insert = "INSERT INTO DELIVEREDBY (order_id, delivery_instructions, delivery_time, delivery_date, is_delivered) VALUE (?, ?, FROM_UNIXTIME(?), FROM_UNIXTIME(?), ?);";
+$stmt = $conn->prepare($insert);
+$stmt->bind_param("isiii", $order_id, $delivery_instructions, $delivery_time, $delivery_date, $is_delivered);
+$stmt->execute();
+$conn->close();
+
+Updates:
+
+Deletes:
+
+Selects:
