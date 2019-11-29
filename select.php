@@ -26,7 +26,7 @@
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
 			$username = $row["username"];
-			$password = $row["password"];
+			$user_password = $row["user_password"];
 			$user_type = $row["user_type"];
 			$email = $row["email"];
 			$first_name = $row["first_name"];
@@ -34,7 +34,7 @@
 ?>
 			<tr>
 				<td><?php echo $username; ?></td>
-				<td><?php echo $password; ?></td>
+				<td><?php echo $user_password; ?></td>
 				<td><?php echo $user_type; ?></td>
 				<td><?php echo $email; ?></td>
 				<td><?php echo $first_name; ?></td>

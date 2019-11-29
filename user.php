@@ -11,9 +11,9 @@
 
 <?php
 	$inUsername = $_POST['username'];
-	$inPassword = $_POST['password'];
+	$inPassword = $_POST['user_password'];
 
-	$query = "SELECT * FROM USER WHERE username ='$inUsername' AND password = '$inPassword'";
+	$query = "SELECT * FROM USER WHERE username ='$inUsername' AND user_password = '$inPassword'";
 	//echo $query;
 
 	$result = $conn->query($query);
@@ -21,7 +21,7 @@
 		$row = $result->fetch_assoc();
 
 		$username = $row["username"];
-		$password = $row["password"];
+		$user_password = $row["user_password"];
 		$user_type = $row["user_type"];
 		$email = $row["email"];
 		$first_name = $row["first_name"];
@@ -29,6 +29,8 @@
 
 		if ($user_type == 'b' || $user_type == 'B') {
 			echo 'Buyer';
+			header( "Location: buyer/buyer.html" );
+		exit ;
 		}
 		if ($user_type == 'd' || $user_type == 'D') {
 			echo 'Deliverer';

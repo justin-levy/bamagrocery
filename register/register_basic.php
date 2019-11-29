@@ -13,7 +13,7 @@
 		</h2>
 		<form action='insert.php' method='post'>
 			<div>Username: <input type='text' name='username' /></div>
-			<div>Password: <input type='text' name='password' /></div>
+			<div>Password: <input type='text' name='user_password' /></div>
 			<div>Confirm Password: <input type='text' name='confirm_password' /></div>
 			<input type="hidden" name="user_type" value="<?php
 				if ($user_type == "Buyer") echo "b";

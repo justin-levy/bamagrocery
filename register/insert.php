@@ -6,14 +6,14 @@
 	}
 
 	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$user_password = $_POST['user_password'];
 	$confirm_password = $_POST['confirm_password'];
 	$user_type = $_POST['user_type'];
 	$email = $_POST['email'];
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
 
-	if ($password != $confirm_password) {
+	if ($user_password != $confirm_password) {
 		header( "Location: register_basic.php" );
 		exit ;
 	}
@@ -32,10 +32,10 @@
 
 	// need to check confirmation code here!!!
 	
-	$insert = "INSERT INTO USER (username, password, user_type, email, first_name, last_name) VALUES (?, ?, ?, ?, ?, ?)";
+	$insert = "INSERT INTO USER (username, user_password, user_type, email, first_name, last_name) VALUES (?, ?, ?, ?, ?, ?)";
 
 	$stmt = $conn->prepare($insert);
-	$stmt->bind_param("ssssss", $username, $password, $user_type, $email, $first_name, $last_name);
+	$stmt->bind_param("ssssss", $username, $user_password, $user_type, $email, $first_name, $last_name);
 	//echo $insert;
 	$stmt->execute();
 
