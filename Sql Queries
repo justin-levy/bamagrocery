@@ -156,3 +156,31 @@ while ($row = $result->fetch_assoc()) {
   $itemRow = $result->fetch_assoc();
   echo itemRow['item_name'] . " " . $itemRow['description'] . " " . $row['quantity'] . " " . $itemRow['listed_price'] . " " . $itemRow['quantity'];
 }
+
+
+(Payment Method page 18)
+$query = "SELECT default_payment FROM BUYER WHERE username='$username'";
+$result = $conn->query($query);
+$row = $result->fetch_assoc();
+$defaultPayment = $row['default_payment'];
+$query = "SELECT payment_name, account_number, routing_number FROM PAYMENTS WHERE username='$username'";
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
+  if ($row['payment_name'] == $defaultPayment)
+    echo $row['payment_name'] . " " . $row['account_number'] . " " . $row['routing_number'] . " yes";
+  else
+    echo $row['payment_name'] . " " . $row['account_number'] . " " . $row['routing_number'] . " yes";
+}
+
+
+(Receipt page 19)
+// Do we need a query for this? Or could we store the information during checkout?
+// Because payment name isn't tied to orders.
+
+
+(Order History page 20)
+$query = "SELECT order_id, order_placed_date FROM ORDERS WHERE order_id=(SELECT order_id FROM ORDERBY WHERE buyer_username='$username') ORDER BY order_placed_date ASC";
+$result = conn->query($query);
+while ($row = $result->fetch_assoc()) {
+  // Add rest of query statements to get store name, total price, total num of items, and delivered status
+}
