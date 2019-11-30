@@ -125,3 +125,15 @@ $accountNum = $row['account_number'];
 $routingNum = $row['routing_number'];
 
 $conn->close();
+
+
+(List of Stores page 13)
+$query = "SELECT address_id, store_name, phone, opening_time, closing_time FROM GROCERYSTORE ORDER BY store_name";
+$result = $conn->query($query);
+while($row = $result->fetch_assoc()) {
+  $addressID = $row['address_id'];
+  $query = "SELECT street, city, state, zip_code FROM ADDRESS WHERE id='$addressID'";
+  $addressResult = $conn->query($query);
+  $addressRow = $addressResult->fetch_assoc();
+  echo $row['store_name'] . " " . $addressRow['street'] . ", " . $addressRow['city'] . ", " . $addressRow['state'] . " " . $addressRow['zip_code'] . " " . $row['phone'] . " " . $row['opening_time'] . "-" . $row['closing_time'];
+}
