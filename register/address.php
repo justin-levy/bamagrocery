@@ -11,10 +11,10 @@
 			<input type="hidden" name="user_type" value="<?php echo $user_type;?>">
 			<input type="hidden" name="username" value="<?php echo $_GET['username'];?>">
 			<input type="hidden" name="phone" value="<?php echo $_GET['phone'];?>">
-			<div>Street: <input type='text' name='street' /></div>
-			<div>City: <input type='text' name='city' /></div>
-			<div>State: <input type='text' name='state' /></div>
-			<div>ZIP Code: <input type='text' name='zip_code' /></div>
+			<div>Street: <input type='text' name='street' required maxlength="50"/></div>
+			<div>City: <input type='text' name='city' required maxlength="20"/></div>
+			<div>State: <input type='text' name='state' required maxlength="20"/></div>
+			<div>ZIP Code: <input type='text' name='zip_code' required maxlength="5" minlength="5"/></div>
 			<input type='submit' />
 		</form>
 	</body>

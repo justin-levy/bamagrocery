@@ -1,6 +1,18 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="../style.css">
+		<script> 
+			function checkPassword(form) { 
+				password1 = form.user_password.value; 
+				password2 = form.confirm_password.value;     
+				if (password1 != password2) { 
+					alert ("Passwords were not the same!");
+					return false; 
+				}
+				
+				//new_username = form.username.value;
+			}
+        </script> 
 	</head>
 	<body>
 		<h1> Register
@@ -11,7 +23,7 @@
 		</h1>
 		<h2>
 		</h2>
-		<form action='insert.php' method='post'>
+		<form onsubmit='return checkPassword(this)' action='insert.php' method='post'>
 			<div>Username: <input type='text' name='username' required maxlength="30"/></div>
 			<div>Password: <input type='text' name='user_password' required maxlength="20"/></div>
 			<div>Confirm Password: <input type='text' name='confirm_password' required maxlength="20"/></div>
@@ -25,7 +37,7 @@
 			<div>Last Name: <input type='text' name='last_name' required maxlength="30"/></div>
 			<?php
 				if ($user_type == "Buyer" || $user_type == "Manager") {
-					echo "<div>Phone Number: <input type='text' name='phone' required maxlength=\"10\"/></div>";
+					echo "<div>Phone Number: <input type='text' name='phone' required minlength=\"10\" maxlength=\"10\"/></div>";
 				}
 				if ($user_type == "Deliverer" || $user_type == "Manager") {
 					echo "<div>Confirmation Code: <input type='text' name='confirmation_code' required maxlength=\"11\"/></div>";

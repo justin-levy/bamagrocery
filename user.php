@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
 	if ($conn->connect_error) {
 		die( "Connection failed: ".$conn->connect_error);
@@ -29,6 +30,7 @@
 
 		if ($user_type == 'b' || $user_type == 'B') {
 			echo 'Buyer';
+			$_SESSION['username'] = $username;
 			header( "Location: buyer/buyer.php" );
 		exit ;
 		}
