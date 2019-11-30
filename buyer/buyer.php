@@ -13,7 +13,7 @@
 			<input type="button" onclick="window.location.href = '';" value="Order History"/>
 			<input type="button" onclick="window.location.href = '<?php echo "account_info.php" ?>';" value="Account Information"/>
 			<input type="button" onclick="window.location.href = '<?php echo "payments.php" ?>';" value="Payment Methods"/>
-			<input type="button" onclick="window.location.href = '../index.php';" value="Back"/>
+			<input type="button" onclick="window.location.href = '../index.php?logout=true';" value="Logout"/>
 		</form>
 	</body>
 </html>

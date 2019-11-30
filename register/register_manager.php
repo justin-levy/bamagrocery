@@ -31,7 +31,7 @@
 								$addr_result = $conn->query($addr_query);
 								$addr_data = $addr_result->fetch_assoc();
 								echo $addr_data['street'];
-								echo " ";
+								echo ", ";
 								echo $addr_data['city'];
 								echo ", ";
 								echo $addr_data['state'];

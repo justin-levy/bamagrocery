@@ -7,27 +7,79 @@
 		die( "Connection failed: ".$conn->connect_error);
 	}
 
-	$query = "SELECT * FROM USER WHERE username = '$username'";
-	$result = $conn->query($query);
-	if ($result->num_rows == 1) {
-		$row = $result->fetch_assoc();
-		$username = $row["username"];
-		$user_password = $row["user_password"];
-		$user_type = $row["user_type"];
-		$email = $row["email"];
-		$first_name = $row["first_name"];
-		$last_name = $row["last_name"];
+
+	$select = "SELECT * FROM USER WHERE username=?";
+	$stmt = $conn->prepare($select);
+	$stmt->bind_param("s", $username);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	$row = $res->fetch_assoc();
+	$first_name = $row['first_name'];
+	$last_name = $row['last_name'];
+	$email = $row['email'];
+	$user_type = $row["user_type"];
+	//echo $first_name;
+	//echo $last_name;
+	//echo $email;
+	
+	$select = "SELECT * FROM BUYER WHERE username=?;";
+	$stmt = $conn->prepare($select);
+	$stmt->bind_param("s", $username);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	$row = $res->fetch_assoc();
+	$phone = $row['phone'];
+	$addressID = $row['address'];
+	$storeID = $row['default_store_id'];
+	$default_payment_name = $row['default_payment'];
+	//echo $phone;
+	
+	$select = "SELECT * FROM ADDRESS WHERE id=?;";
+	$stmt = $conn->prepare($select);
+	$stmt->bind_param("i", $addressID);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	$row = $res->fetch_assoc();
+	$buyerStreet = $row['street'];
+	$buyerCity = $row['city'];
+	$buyerState = $row['state'];
+	$buyerZip = $row['zip_code'];
+	//echo $buyerStreet;
+	//echo $buyerCity;
+	//echo $buyerState;
+	//echo $buyerZip;
+	
+	$select = "SELECT * FROM GROCERYSTORE WHERE store_id=?;";
+	$stmt = $conn->prepare($select);
+	$stmt->bind_param("i", $storeID);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	if($res->row_num == 1) {
+		$row = $res->fetch_assoc();
+		$storeName = $row['store_name'];
+		$storeAddressID = $row['address_id'];
+		//echo $storeName;
+		
+		$select = "SELECT * FROM ADDRESS WHERE id=?;";
+		$stmt = $conn->prepare($select);
+		$stmt->bind_param("i", $storeAddressID);
+		$stmt->execute();
+		$res = $stmt->get_result();
+		$row = $res->fetch_assoc();
+		$storeAddress = $row['street'];
+		//echo $storeAddress;
 	}
 	
-	$buyer_query = "SELECT * FROM BUYER WHERE username = '$username'";
-	$buyer_result = $conn->query($buyer_query);
-	if ($buyer_result->num_rows == 1) {
-		$row = $result->fetch_assoc();
-		$address = $row["address"];
-		$phone = $row["phone"];
-		$default_store_id = $row["default_store_id"];
-		$default_payment = $row["default_payment"];
-	}
+	$select = "SELECT * FROM PAYMENTS WHERE username=? AND payment_name=?;";
+	$stmt = $conn->prepare($select);
+	$stmt->bind_param("ss", $username, $default_payment_name);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	$row = $res->fetch_assoc();
+	$accountNum = $row['account_number'];
+	$routingNum = $row['routing_number'];
+	//echo $accountNum;
+	//echo $routingNum;
 ?>
 
 <html>
@@ -43,14 +95,8 @@
 			<div>Email: <input type='text' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
 			<div>First Name: <input type='text' name='first_name' required maxlength="30" readonly value="<?php echo $first_name; ?>"/></div>
 			<div>Last Name: <input type='text' name='last_name' required maxlength="30" readonly value="<?php echo $last_name; ?>"/></div>
-			<?php
-				if ($user_type == "b" || $user_type == "m") {
-					echo "<div>Phone Number: <input type='text' name='phone' required minlength=\"10\" maxlength=\"10\"/></div>";
-				}
-				if ($user_type == "d" || $user_type == "m") {
-					echo "<div>Confirmation Code: <input type='text' name='confirmation_code' required maxlength=\"11\"/></div>";
-				}
-			?>
+			<div>Phone Number: <input type='text' name='phone' required minlength=\"10\" maxlength=\"10\" value="<?php echo $phone; ?>"/></div>
+			
 			<input type='submit' />
 			<input type="button" onclick="window.location.href = '<?php echo "buyer.php" ?>';" value="Back"/>
 		</form>

@@ -1,12 +1,42 @@
-<?php
-	session_start();
-?>
-
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="./style.css">
 	</head>
 	<body>
+		<?php
+			session_start();
+			$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
+			if ($conn->connect_error) {
+				die( "Connection failed: ".$conn->connect_error);
+			}
+			
+			if($_GET['logout'] == 'true') {
+				$_SESSION['username'] = "";
+			}
+			
+			$username = $_SESSION['username'];
+			echo $username;
+			if ($username != NULL) {
+				$query = "SELECT * FROM USER WHERE username ='$username'";
+		
+				$result = $conn->query($query);
+				if ($result->num_rows == 1) {
+					$row = $result->fetch_assoc();
+					$user_type = $row["user_type"];
+		
+					if ($user_type == 'b') {
+						header( "Location: buyer/buyer.php" );
+						exit ;
+					}
+					if ($user_type == 'd') {
+						echo 'Deliverer';
+					}
+					if ($user_type == 'm') {
+						echo 'Manager';
+					}
+				}
+			}
+		?>
 		<h1>User Login</h1>
 		<form action='user.php' method='post'>
 			<div>Username: <input type='text' name='username' required maxlength="30" autofocus/></div>
