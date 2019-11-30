@@ -137,3 +137,22 @@ while($row = $result->fetch_assoc()) {
   $addressRow = $addressResult->fetch_assoc();
   echo $row['store_name'] . " " . $addressRow['street'] . ", " . $addressRow['city'] . ", " . $addressRow['state'] . " " . $addressRow['zip_code'] . " " . $row['phone'] . " " . $row['opening_time'] . "-" . $row['closing_time'];
 }
+
+
+(Item List page 15)
+$query = "SELECT item_name, description, exp_date, listed_price, quantity FROM ITEM WHERE food_group='$typeOfItem'";
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
+  echo $row['item_name'] . " " . $row['description'] . " " . $row['exp_date'] . " " . $row['listed_price'] . " " . $row['quantity'];
+}
+
+
+(Cart page 16)
+$query = "SELECT item_id, quantity FROM SELECTITEM WHERE order_id='$orderID'";
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
+  $query = "SELECT item_name, description, listed_price, quantity FROM ITEM WHERE item_id='$row['item_id']'";
+  $itemResult = $conn->query($query);
+  $itemRow = $result->fetch_assoc();
+  echo itemRow['item_name'] . " " . $itemRow['description'] . " " . $row['quantity'] . " " . $itemRow['listed_price'] . " " . $itemRow['quantity'];
+}
