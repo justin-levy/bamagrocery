@@ -28,17 +28,21 @@
 		$first_name = $row["first_name"];
 		$last_name = $row["last_name"];
 
-		if ($user_type == 'b' || $user_type == 'B') {
+		if ($user_type == 'b' || $user_type == 'buyer') {
 			echo 'Buyer';
 			$_SESSION['username'] = $username;
 			header( "Location: buyer/buyer.php" );
 		exit ;
 		}
-		if ($user_type == 'd' || $user_type == 'D') {
+		if ($user_type == 'd' || $user_type == 'deliverer') {
 			echo 'Deliverer';
+			$_SESSION['username'] = $username;
+			header( "Location: deliverer/deliverer.php" );
 		}
-		if ($user_type == 'm' || $user_type == 'M') {
+		if ($user_type == 'm' || $user_type == 'manager') {
 			echo 'Manager';
+			$_SESSION['username'] = $username;
+			header( "Location: manager/manager.php" );
 		}
 ?>
 </h1>

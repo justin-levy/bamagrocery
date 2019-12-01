@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	$username = $_SESSION['username'];
+	$store_id = $_SESSION['store_id'];
 	$typeOfItem = $_GET['typeOfItem'];
 	
 	$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
@@ -26,8 +27,8 @@
 					<th>Price</th>
 					<th>In Stock</th>
 				</tr>
-				<?php
-					$query = "SELECT item_name, description, exp_date, listed_price, quantity FROM ITEM WHERE food_group='$typeOfItem'";
+				<?php					
+					$query = "SELECT item_name, description, exp_date, listed_price, quantity FROM ITEM JOIN soldAt ON item_id WHERE food_group='$typeOfItem' AND store_id='$store_id'";
 					$result = $conn->query($query);
 					if ($result->num_rows > 0) {
 						while ($row = $result->fetch_assoc()) {

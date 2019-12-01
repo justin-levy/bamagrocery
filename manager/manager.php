@@ -4,7 +4,7 @@
 	</head>
 	<body>
 
-		<h1>Deliverer Functionality</h1>
+		<h1>Manager Functionality</h1>
 		<?php
 			session_start();
 			$username = $_SESSION['username'];
@@ -12,7 +12,9 @@
 
 		<form method="" action="">
 			<?php echo $_GET['error']?>
-			<input type="button" onclick="window.location.href = '';" value="Assignments"/>
+			<input type="button" onclick="window.location.href = '';" value="View Revenue Report"/>
+			<input type="button" onclick="window.location.href = '';" value="View Orders"/>
+			<input type="button" onclick="window.location.href = 'item_list.php';" value="View Inventory"/>
 			<input type="button" onclick="window.location.href = 'account_info.php';" value="Account Information"/>
 			<input type="button" onclick="window.location.href = '../index.php?logout=true';" value="Logout"/>
 		</form>

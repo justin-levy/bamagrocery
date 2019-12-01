@@ -24,15 +24,17 @@
 					$row = $result->fetch_assoc();
 					$user_type = $row["user_type"];
 		
-					if ($user_type == 'b') {
+					if ($user_type == 'b' || $user_type == 'buyer') {
 						header( "Location: buyer/buyer.php" );
 						exit ;
 					}
-					if ($user_type == 'd') {
-						echo 'Deliverer';
+					if ($user_type == 'd' || $user_type == 'deliverer') {
+						header( "Location: deliverer/deliverer.php" );
+						exit ;
 					}
-					if ($user_type == 'm') {
-						echo 'Manager';
+					if ($user_type == 'm' || $user_type == 'manager') {
+						header( "Location: manager/manager.php" );
+						exit ;
 					}
 				}
 			}

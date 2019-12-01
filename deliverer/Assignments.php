@@ -4,7 +4,9 @@
 		die( "Connection failed: ".$conn->connect_error);
 	}
 
-	$username = $_GET['username'];
+	session_start();
+	$username = $_SESSION['username'];
+	
 	$index = mysqli_num_rows($result);  // array size
   $orderid[$index];
 	$quantity[$index];
