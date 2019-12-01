@@ -9,16 +9,16 @@
 			$username = $_SESSION['username'];
 		?>
 		<form method="" action="">
-			<input type="button" onclick="window.location.href = '';" value="Beverages"/>
-			<input type="button" onclick="window.location.href = '';" value="Baking Goods"/>
-			<input type="button" onclick="window.location.href = '';" value="Canned Goods"/>
-			<input type="button" onclick="window.location.href = '';" value="Cleaning Products"/>
-			<input type="button" onclick="window.location.href = '';" value="Dairy"/>
-			<input type="button" onclick="window.location.href = '';" value="Frozen Foods"/>
-			<input type="button" onclick="window.location.href = '';" value="Meat"/>
-			<input type="button" onclick="window.location.href = '';" value="Personal Care"/>
-			<input type="button" onclick="window.location.href = '';" value="Produce"/>
-			<input type="button" onclick="window.location.href = '';" value="Others"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Beverages';" value="Beverages"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Baking%20Goods';" value="Baking Goods"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Canned%20Goods';" value="Canned Goods"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Cleaning%20Products';" value="Cleaning Products"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Dairy';" value="Dairy"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Frozen%20Foods';" value="Frozen Foods"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Meat';" value="Meat"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Personal%20Care';" value="Personal Care"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Produce';" value="Produce"/>
+			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Others';" value="Others"/>
 			<input type="button" onclick="window.location.href = '';" value="Checkout"/>
 			<input type="button" onclick="window.location.href = 'store_home.php';" value="Back"/>
 		</form>

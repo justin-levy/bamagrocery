@@ -12,6 +12,7 @@
 			
 			if($_GET['logout'] == 'true') {
 				$_SESSION['username'] = "";
+				$_SESSION['store_id'] = "";
 			}
 			
 			$username = $_SESSION['username'];

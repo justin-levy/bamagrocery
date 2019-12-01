@@ -25,7 +25,6 @@
 		<form method="" action="">			
 			<table border="1">
 				<tr>
-					<th>Option</th>
 					<th>Username</th>
 					<th>Payment Name</th>
 					<th>Account Number</th>
@@ -42,8 +41,8 @@
 							$routing_number = $row["routing_number"];
 				?>
 				<tr>
-					<td><input type="radio" name="payment" value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo "checked"; ?> required></td>
-					<td><?php echo $username; ?></td>
+					<td><input type="radio" name="payment" value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo "checked"; ?> required>
+					<?php echo $username; ?></td>
 					<td><?php echo $payment_name; ?></td>
 					<td><?php echo $account_number; ?></td>
 					<td><?php echo $routing_number; ?></td>
@@ -60,8 +59,8 @@
 				?>
 			</table>
 			<input type="submit"  value="Confirm Order"/>
-			<input type="button" onclick="window.location.href = '<?php echo "new_payment.php" ?>';" value="Use Different Payment"/>
-			<input type="button" onclick="window.location.href = '<?php echo "buyer.php" ?>';" value="Back"/>
+			<input type="button" onclick="window.location.href = 'new_payment.php';" value="Use Different Payment"/>
+			<input type="button" onclick="window.location.href = 'buyer.php';" value="Back"/>
 		</form>
 
 </body>

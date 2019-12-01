@@ -40,7 +40,7 @@
 			<div>Email: <input type='text' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
 			
 			<input type='submit' />
-			<input type='button' onclick="window.location.href = 'delete_deliverer.php';" value="Delete"/>
+			<input type='button' onclick="window.location.href = '';" value="Delete"/>
 			<input type="button" onclick="window.location.href = '<?php echo "deliverer.php" ?>';" value="Back"/>
 		</form>
 		</form>

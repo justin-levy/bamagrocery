@@ -1,17 +1,23 @@
 <?php
 	session_start();
 	$username = $_SESSION['username'];
+	$order_id = $_SESSION['order_id'];
+	
+	if ($order_id != "") {
+		header( "Location: store/store_home.php" );
+		exit ;
+	}
 
 	$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
 	if ($conn->connect_error) {
 		die( "Connection failed: ".$conn->connect_error);
 	}
-
-	$query = "SELECT default_payment FROM BUYER WHERE username = '$username'";
+	
+	$query = "SELECT default_store_id FROM BUYER WHERE username = '$username'";
 	$result = $conn->query($query);
 	if ($result->num_rows == 1) {
 		$row = $result->fetch_assoc();
-		$default_payment_name = $row['default_payment'];
+		$default_store_id = $row['default_store_id'];
 	}
 ?>
 
@@ -22,7 +28,7 @@
 	<body>
 		<h1>New Order - Choose a Store</h1>
 	
-		<form method="" action="">			
+		<form method="POST" action="go_to_store.php">			
 			<table border="1">
 				<tr>
 					<th>Store Name</th>
@@ -35,14 +41,15 @@
 					$result = $conn->query($query);
 					if ($result->num_rows > 0) {
 						while ($row = $result->fetch_assoc()) {
-							//$username = $row["username"];
-							$store_name = $row["store_name"];
-							$address_id = $row["address_id"];
 							$store_id = $row["store_id"];
+							$address_id = $row["address_id"];
+							$store_name = $row["store_name"];
+							$opening_time = $row['opening_time'];
+							$closing_time = $row['closing_time'];
 							$phone = $row['phone'];
 				?>
 				<tr>
-					<td><input type="radio" name="payment" value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo "checked"; ?> required>
+					<td><input type="radio" name="store_id" value="<?php echo $store_id?>" <?php if ($store_id == $default_store_id) echo "checked"; ?> required>
 					<?php echo $store_name; ?></td>
 					<td><?php 
 								$addr_query = "SELECT * FROM ADDRESS WHERE id=$store_id";
@@ -63,15 +70,12 @@
 				<?php
 						}
 					}
-					else {
-						header( "Location: new_payment.php" );
-						exit ;
-					}
+					
 					$conn->close();
 				?>
 			</table>
-			<input type="button" onclick="window.location.href = '<?php echo "" ?>';" value="Choose"/>
-			<input type="button" onclick="window.location.href = '<?php echo "buyer.php" ?>';" value="Back"/>
+			<input type="submit" value="Choose"/>
+			<input type="button" onclick="window.location.href = 'buyer.php';" value="Back"/>
 		</form>
 
 </body>
