@@ -52,7 +52,7 @@
 				?>
 			</table>
 			<input type="submit" value="Delete"/>
-			<input type="button" onclick="window.location.href = '';" value="Checkout"/>
+			<input type="button" onclick="window.location.href = 'checkout.php';" value="Checkout"/>
 			<input type="button" onclick="window.location.href = 'store_home.php';" value="Back"/>
 		</form>
 

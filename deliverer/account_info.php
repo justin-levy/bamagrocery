@@ -37,7 +37,7 @@
 			<div>First Name: <input type='text' name='first_name' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $first_name; ?>"/></div>
 			<div>Last Name: <input type='text' name='last_name' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $last_name; ?>"/></div>
 			
-			<div>Email: <input type='text' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
+			<div>Email: <input type='email' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
 			
 			<input type='submit' />
 			<input type='button' onclick="window.location.href = '';" value="Delete"/>

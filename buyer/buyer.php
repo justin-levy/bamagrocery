@@ -37,7 +37,7 @@
 		<form method="" action="">
 			<?php echo $_GET['error']?>
 			<input type="button" onclick="window.location.href = 'list_stores.php';" value="New Order"/>
-			<input type="button" onclick="window.location.href = '';" value="Order History"/>
+			<input type="button" onclick="window.location.href = 'order_list.php';" value="Order History"/>
 			<input type="button" onclick="window.location.href = 'account_info.php';" value="Account Information"/>
 			<input type="button" onclick="window.location.href = 'payments.php';" value="Payment Methods"/>
 			<input type="button" onclick="window.location.href = '../index.php?logout=true';" value="Logout"/>

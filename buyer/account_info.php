@@ -92,10 +92,10 @@
 		<form method="" action="">
 			<form action='' method='post'>
 			<div>Username: <input type='text' name='username' required maxlength="30" readonly value="<?php echo $username; ?>"/></div>
-			<div>Email: <input type='text' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
+			<div>Email: <input type='email' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
 			<div>First Name: <input type='text' name='first_name' required maxlength="30" readonly value="<?php echo $first_name; ?>"/></div>
 			<div>Last Name: <input type='text' name='last_name' required maxlength="30" readonly value="<?php echo $last_name; ?>"/></div>
-			<div>Phone Number: <input type='text' name='phone' required minlength=\"10\" maxlength=\"10\" value="<?php echo $phone; ?>"/></div>
+			<div>Phone Number: <input type='text' name='phone' pattern="[0-9]+" required minlength=\"10\" maxlength=\"10\" value="<?php echo $phone; ?>"/></div>
 			
 			<input type='submit' />
 			<input type="button" onclick="window.location.href = '<?php echo "buyer.php" ?>';" value="Back"/>

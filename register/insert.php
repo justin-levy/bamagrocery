@@ -26,7 +26,7 @@
 	$query = "SELECT * FROM USER WHERE username ='$username'";
 	$result = $conn->query($query);
 	if ($result->num_rows >= 1) {
-		header( "Location: register_basic.php?submit=$user_type_long" );
+		header( "Location: register_basic.php?error=That%20Username%20is%20already%20taken" );
 		exit ;
 	}
 

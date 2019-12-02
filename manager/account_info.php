@@ -66,8 +66,8 @@
 			<div>First Name: <input type='text' name='first_name' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $first_name; ?>"/></div>
 			<div>Last Name: <input type='text' name='last_name' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $last_name; ?>"/></div>
 			
-			<div>Email: <input type='text' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
-			<div>Phone Number: <input type='text' name='phone' required minlength=\"10\" maxlength=\"10\" value="<?php echo $phone; ?>"/></div>
+			<div>Email: <input type='email' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
+			<div>Phone Number: <input type='text' name='phone' pattern="[0-9]+" required minlength=\"10\" maxlength=\"10\" value="<?php echo $phone; ?>"/></div>
 			
 			<div>Managed Grocery Store: 
 			<select name="store">

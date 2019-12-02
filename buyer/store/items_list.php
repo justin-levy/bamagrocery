@@ -61,7 +61,7 @@
 				?>
 			</table>
 			<input type="submit" value="Add to Cart"/>
-			<input type="button" onclick="window.location.href = '';" value="Checkout"/>
+			<input type="button" onclick="window.location.href = 'checkout.php';" value="Checkout"/>
 			<input type="button" onclick="window.location.href = 'find_item.php';" value="Back"/>
 		</form>
 

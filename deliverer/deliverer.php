@@ -12,7 +12,7 @@
 
 		<form method="" action="">
 			<?php echo $_GET['error']?>
-			<input type="button" onclick="window.location.href = '';" value="Assignments"/>
+			<input type="button" onclick="window.location.href = 'order_list.php';" value="Assignments"/>
 			<input type="button" onclick="window.location.href = 'account_info.php';" value="Account Information"/>
 			<input type="button" onclick="window.location.href = '../index.php?logout=true';" value="Logout"/>
 		</form>
