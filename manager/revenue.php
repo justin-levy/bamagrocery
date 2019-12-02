@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	$username = $_SESSION['username'];
-	$item_id = $_POST['item_id'];
 
 	$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
 	if ($conn->connect_error) {
@@ -44,13 +43,13 @@
 		<link rel="stylesheet" type="text/css" href="../style.css">
 	</head>
 	<body>
-		<h1>Item Information</h1>
+		<h1>Revenue Report</h1>
 
-		<form method="POST" action="item_update.php">
+		<form method="" action="">
 			<form action='' method='post'>
-			<div>Store Name: <input type='text' name='item_name' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $store_name; ?>"/></div>
-			<div>Number of Items Sold: <input type='number' name='quantity' required value="<?php echo $quantity; ?>"/></div>
-			<div>Total Profit: <input type='number' name='quantity' required value="<?php echo $profit; ?>"/></div>
+			<div>Store Name: <input type='text' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $store_name; ?>"/></div>
+			<div>Number of Items Sold: <input type='number' name='quantity' readonly required value="<?php echo $quantity; ?>"/></div>
+			<div>Total Profit: <input type='number' name='quantity' readonly required value="<?php echo $profit; ?>"/></div>
 
 			<input type="button" onclick="window.location.href = 'manager.php';" value="Back"/>
 		</form>
