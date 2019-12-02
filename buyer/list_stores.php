@@ -2,7 +2,7 @@
 	session_start();
 	$username = $_SESSION['username'];
 	$order_id = $_SESSION['order_id'];
-	
+
 	if ($order_id != "") {
 		header( "Location: store/store_home.php" );
 		exit ;
@@ -12,7 +12,7 @@
 	if ($conn->connect_error) {
 		die( "Connection failed: ".$conn->connect_error);
 	}
-	
+
 	$query = "SELECT default_store_id FROM BUYER WHERE username = '$username'";
 	$result = $conn->query($query);
 	if ($result->num_rows == 1) {
@@ -27,8 +27,8 @@
 	</head>
 	<body>
 		<h1>New Order - Choose a Store</h1>
-	
-		<form method="POST" action="go_to_store.php">			
+
+		<form method="POST" action="go_to_store.php">
 			<table border="1">
 				<tr>
 					<th>Store Name</th>
@@ -51,8 +51,8 @@
 				<tr>
 					<td><input type="radio" name="store_id" value="<?php echo $store_id?>" <?php if ($store_id == $default_store_id) echo "checked"; ?> required>
 					<?php echo $store_name; ?></td>
-					<td><?php 
-								$addr_query = "SELECT * FROM ADDRESS WHERE id=$store_id";
+					<td><?php
+								$addr_query = "SELECT * FROM ADDRESS WHERE id=$address_id";
 								$addr_result = $conn->query($addr_query);
 								$addr_data = $addr_result->fetch_assoc();
 								echo $addr_data['street'];
@@ -66,11 +66,11 @@
 					<td><?php echo $phone; ?></td>
 					<td><?php echo $opening_time; echo " - "; echo $closing_time; ?></td>
 				</tr>
-							
+
 				<?php
 						}
 					}
-					
+
 					$conn->close();
 				?>
 			</table>
