@@ -12,7 +12,24 @@
 			
 			if($_GET['logout'] == 'true') {
 				$_SESSION['username'] = "";
-				$_SESSION['order_id'] = "";
+				if($order_id != "") {
+					$insert = "DELETE FROM SELECTITEM WHERE order_id=?;";
+					$stmt = $conn->prepare($insert);
+					$stmt->bind_param("i", $order_id);
+					$stmt->execute();
+					
+					$insert = "DELETE FROM ORDERFROM WHERE order_id=?;";
+					$stmt = $conn->prepare($insert);
+					$stmt->bind_param("i", $order_id);
+					$stmt->execute();
+					
+					$insert = "DELETE FROM ORDERS WHERE order_id=?;";
+					$stmt = $conn->prepare($insert);
+					$stmt->bind_param("i", $order_id);
+					$stmt->execute();
+					
+					$_SESSION['order_id'] = "";
+				}
 			}
 			
 			$username = $_SESSION['username'];
