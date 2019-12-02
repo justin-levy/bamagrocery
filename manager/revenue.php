@@ -6,7 +6,7 @@
 	if ($conn->connect_error) {
 		die( "Connection failed: ".$conn->connect_error);
 	}
-	
+
 	$select = "SELECT * FROM MANAGES WHERE username=?;";
 	$stmt = $conn->prepare($select);
 	$stmt->bind_param("s", $username);
@@ -15,7 +15,7 @@
 	$row = $res->fetch_assoc();
 	$address_id = $row['store_address'];
 	//echo $address_id;
-	
+
 	$select = "SELECT * FROM GROCERYSTORE WHERE address_id=?;";
 	$stmt = $conn->prepare($select);
 	$stmt->bind_param("i", $address_id);
@@ -24,13 +24,14 @@
 	$row = $res->fetch_assoc();
 	$store_id = $row['store_id'];
 	$store_name = $row['store_name'];
-	
-	$select = "SELECT grocerystore.store_name, SUM(selectitem.quantity) AS quantity, SUM(item.listed_price) AS listed_price, SUM(item.wholesale_price) AS wholesale_price
-	FROM (((orders NATURAL JOIN selectitem) NATURAL JOIN (SELECT item_id, listed_price, wholesale_price FROM item) AS item) NATURAL JOIN orderfrom) NATURAL JOIN (SELECT store_name, store_id FROM grocerystore) AS grocerystore
-	WHERE store_id = ?";
-	$stmt = $conn->prepare($select);
-	$stmt->bind_param("i", $store_id);
-	$stmt->execute();
+
+	$select = "SELECT grocerystore.store_name, SUM(selectitem.quantity) AS quantity, SUM(item.listed_price) AS listed_price, SUM(item.wholesale_price) AS wholesale_price FROM (((orders NATURAL JOIN selectitem) NATURAL JOIN (SELECT item_id, listed_price, wholesale_price FROM item) AS item) NATURAL JOIN orderfrom) NATURAL JOIN (SELECT store_name, store_id FROM grocerystore) AS grocerystore WHERE store_id = $store_id";
+	$res = $conn->query($select);
+	// $stmt = $conn->prepare($select);
+	// $stmt->bind_param("i", $store_id);
+	// $stmt->execute();
+	// $res = $stmt->get_result();
+	$row = $res->fetch_assoc();
 	$quantity = $row['quantity'];
 	$listed_price = $row['listed_price'];
 	$wholesale_price = $row['wholesale_price'];
