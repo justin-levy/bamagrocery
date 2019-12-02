@@ -12,7 +12,7 @@
 
 		<form method="" action="">
 			<?php echo $_GET['error']?>
-			<input type="button" onclick="window.location.href = '';" value="View Revenue Report"/>
+			<input type="button" onclick="window.location.href = 'revenue.php';" value="View Revenue Report"/>
 			<input type="button" onclick="window.location.href = 'order_list.php';" value="View Orders"/>
 			<input type="button" onclick="window.location.href = 'item_list.php';" value="View Inventory"/>
 			<input type="button" onclick="window.location.href = 'account_info.php';" value="Account Information"/>
