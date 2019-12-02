@@ -27,14 +27,14 @@
 
 	$select = "SELECT grocerystore.store_name, SUM(selectitem.quantity) AS quantity, SUM(item.listed_price) AS listed_price, SUM(item.wholesale_price) AS wholesale_price FROM (((orders NATURAL JOIN selectitem) NATURAL JOIN (SELECT item_id, listed_price, wholesale_price FROM item) AS item) NATURAL JOIN orderfrom) NATURAL JOIN (SELECT store_name, store_id FROM grocerystore) AS grocerystore WHERE store_id = $store_id";
 	$res = $conn->query($select);
-	// $stmt = $conn->prepare($select);
-	// $stmt->bind_param("i", $store_id);
-	// $stmt->execute();
-	// $res = $stmt->get_result();
+
 	$row = $res->fetch_assoc();
 	$quantity = $row['quantity'];
+	if ($quantity == "") $quantity = 0;
 	$listed_price = $row['listed_price'];
+	if ($listed_price == "") $listed_price = 0;
 	$wholesale_price = $row['wholesale_price'];
+	if ($wholesale_price == "") $wholesale_price = 0;
 	$profit = $listed_price - $wholesale_price;
 
 ?>
