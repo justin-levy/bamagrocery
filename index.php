@@ -12,7 +12,7 @@
 			
 			if($_GET['logout'] == 'true') {
 				$_SESSION['username'] = "";
-				
+				$order_id = $_SESSION['order_id'];
 				if($_SESSION['order_id'] != "") {
 					$insert = "DELETE FROM SELECTITEM WHERE order_id=?;";
 					$stmt = $conn->prepare($insert);
