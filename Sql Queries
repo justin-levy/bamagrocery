@@ -62,6 +62,15 @@ $conn->close();
 
 Updates:
 
+(Updates item quantity in store after an order is placed)
+UPDATE item,
+	 (SELECT order_id, item_id, store_id, quantity
+     FROM (orders NATURAL JOIN selectitem) NATURAL JOIN orderfrom
+     WHERE orders.order_id = 13075)
+     AS itemsToUpdate
+SET item.quantity = item.quantity - itemsToUpdate.quantity
+WHERE item.item_id = itemsToUpdate.item_id
+
 Deletes:
 
 Selects:
