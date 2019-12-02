@@ -184,3 +184,8 @@ $result = conn->query($query);
 while ($row = $result->fetch_assoc()) {
   // Add rest of query statements to get store name, total price, total num of items, and delivered status
 }
+
+(Revenue Report)
+SELECT grocerystore.store_name, SUM(selectitem.quantity) AS quantity, SUM(item.listed_price) AS listed_price, SUM(item.wholesale_price) AS wholesale_price
+FROM (((orders NATURAL JOIN selectitem) NATURAL JOIN (SELECT item_id, listed_price, wholesale_price FROM item) AS item) NATURAL JOIN orderfrom) NATURAL JOIN (SELECT store_name, store_id FROM grocerystore) AS grocerystore
+WHERE store_id = 1
