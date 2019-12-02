@@ -12,6 +12,7 @@
 	$email = $_POST['email'];
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
+	$confirmation_code = $_POST['confirmation_code'];
 	
 	$user_type_long;
 	if ($user_type == 'b') $user_type_long = "Buyer";
@@ -34,8 +35,16 @@
 		header( "Location: register_basic.php?submit=$user_type_long" );
 		exit ;
 	}
+		
 
 	// need to check confirmation code here!!!
+
+	$query = "SELECT * FROM SYSTEMINFORMATION WHERE user_codes = '$confirmation_code'";
+	$result = $conn->query($query);
+	if($user_type != 'b' && $result->num_rows == 0){
+		header( "Location: ../index.php?error=Error%20Confirmation%20Code%20Invalid" );
+		exit ;
+	}
 	
 	$insert = "INSERT INTO USER (username, user_password, user_type, email, first_name, last_name) VALUES (?, ?, ?, ?, ?, ?)";
 
