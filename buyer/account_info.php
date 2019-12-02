@@ -98,7 +98,8 @@
 			<div>Phone Number: <input type='text' name='phone' pattern="[0-9]+" required minlength=\"10\" maxlength=\"10\" value="<?php echo $phone; ?>"/></div>
 			
 			<input type='submit' />
-			<input type="button" onclick="window.location.href = '<?php echo "buyer.php" ?>';" value="Back"/>
+			<input type="button" onclick="window.location.href = 'delete_buyer.php';" value="Delete Buyer"/>
+			<input type="button" onclick="window.location.href = 'buyer.php';" value="Back"/>
 		</form>
 		</form>
 	</body>
