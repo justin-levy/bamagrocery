@@ -37,7 +37,7 @@
 					<th>Hours Today</th>
 				</tr>
 				<?php
-					$query = "SELECT * FROM GROCERYSTORE";
+					$query = "SELECT * FROM GROCERYSTORE ORDER BY store_name ASC";
 					$result = $conn->query($query);
 					if ($result->num_rows > 0) {
 						while ($row = $result->fetch_assoc()) {
