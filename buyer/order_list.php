@@ -11,10 +11,10 @@
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="../../style.css">
+		<link rel="stylesheet" type="text/css" href="../style.css">
 	</head>
 	<body>
-		<h1>Assignments</h1>
+		<h1>Order List</h1>
 	
 		<form method="" action="">			
 			<table border="1">

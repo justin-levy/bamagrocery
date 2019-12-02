@@ -40,7 +40,7 @@
 			<div>Email: <input type='email' name='email' pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$" required maxlength="50" value="<?php echo $email; ?>"/></div>
 			
 			<input type='submit' />
-			<input type='button' onclick="window.location.href = '';" value="Delete"/>
+			<input type='button' onclick="window.location.href = 'delete_deliverer.php';" value="Delete"/>
 			<input type="button" onclick="window.location.href = '<?php echo "deliverer.php" ?>';" value="Back"/>
 		</form>
 		</form>

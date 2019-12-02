@@ -20,12 +20,6 @@
 	}
 	echo $res->row_nums;
 	
-	/*
-	$insert = "DELETE FROM MANAGES WHERE username=?;";
-	$stmt = $conn->prepare($insert);
-	$stmt->bind_param("s", $username);
-	$stmt->execute();
-	
 	$insert = "DELETE FROM USER WHERE username=?;";
 	$stmt = $conn->prepare($insert);
 	$stmt->bind_param("s", $username);
@@ -37,6 +31,5 @@
 
 	header( "Location: ../index.php?error=Successfully%20Deleted%20Account&logout=true" );
 	exit ;
-	*/
 ?>
 </html>
