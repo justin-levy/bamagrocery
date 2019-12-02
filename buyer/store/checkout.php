@@ -56,8 +56,7 @@
 					}
 				?>
 			</select></div>
-			<div><input type="checkbox" value="ASAP" checked="checked"> ASAP</div>
-			<div>Delivery Time: <input value="delivery_time" type="time"/>
+			<div>Delivery Time (in minutes, for ASAP leave the field blank): <input type="text" min="0" pattern="[0-9]+" name="delivery_time" placeholder="ASAP"/>
 			</div>
 			<div>Total Price: <input type='text' name='price' value="<?php
 				$total_price = 0.00;

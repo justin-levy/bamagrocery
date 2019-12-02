@@ -101,6 +101,5 @@
 			<input type="button" onclick="window.location.href = 'delete_buyer.php';" value="Delete Buyer"/>
 			<input type="button" onclick="window.location.href = 'buyer.php';" value="Back"/>
 		</form>
-		</form>
 	</body>
 </html>

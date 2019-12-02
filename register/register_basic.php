@@ -33,7 +33,7 @@
 				if ($user_type == "Deliverer") echo "d";
 				if ($user_type == "Manager") echo "m";
 			?>">
-			<div>Email: <input type='email' name='email' required maxlength="50"/></div>
+			<div>Email: <input type='email' name='email' pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$" required maxlength="50"/></div>
 			<div>First Name: <input type='text' name='first_name' pattern="[a-zA-Z]+" required maxlength="30"/></div>
 			<div>Last Name: <input type='text' name='last_name' pattern="[a-zA-Z]+" required maxlength="30"/></div>
 			<?php
