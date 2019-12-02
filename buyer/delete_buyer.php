@@ -8,7 +8,7 @@
 		die( "Connection failed: ".$conn->connect_error);
 	}
 	
-	$insert = "SELECT username FROM BUYER JOIN (deliveredby NATURAL JOIN orderedby) ON username=buyer_username WHERE is_delivered = 0";
+	$insert = "SELECT username FROM BUYER JOIN (deliveredby NATURAL JOIN orderedby) ON username=buyer_username WHERE is_delivered = 0 and username=$username";
 	$result = $conn->query($insert);
 	if ($result->num_rows > 0) {
 		header( "Location: buyer.php?error=Cannot%20Delete%20Buyer%20with%20Active%20Orders" );

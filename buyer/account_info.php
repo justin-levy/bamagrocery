@@ -78,7 +78,7 @@
 	<body>
 		<h1>Buyer Account Information</h1>
 
-		<form method="" action="">
+		<form method="POST" action="update_buyer.php">
 			<form action='' method='post'>
 			<div>Username: <input type='text' name='username' required maxlength="30" readonly value="<?php echo $username; ?>"/></div>
 			<div>Email: <input type='email' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
@@ -99,7 +99,7 @@
 							$opening_time = $row["opening_time"];
 							$closing_time = $row["closing_time"];
 				?>
-							<option value="<?php echo $address_id?>" <?php if ($store_id == $def_store_id) echo " selected=\"selected\""; ?>><?php echo $store_name?> - <?php 
+							<option value="<?php echo $store_id?>" <?php if ($store_id == $def_store_id) echo " selected=\"selected\""; ?>><?php echo $store_name?> - <?php 
 								$addr_query = "SELECT * FROM ADDRESS WHERE id=$store_id";
 								$addr_result = $conn->query($addr_query);
 								$addr_data = $addr_result->fetch_assoc();

@@ -18,7 +18,7 @@
 				<option value="no">No</option>
 			</select></div>
 			<input type='submit' />
-			<input type="button" onclick="window.location.href = 'buyer.php';" value="Back"/>
+			<input type="button" onclick="window.location.href = 'payments.php';" value="Back"/>
 		</form>
 	</body>
 </html>
