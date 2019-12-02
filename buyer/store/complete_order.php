@@ -2,6 +2,7 @@
 	session_start();
 	$username = $_SESSION['username'];
 	$order_id = $_SESSION['order_id'];
+	date_default_timezone_set("America/Chicago");
 
 	$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
 	if ($conn->connect_error) {
@@ -15,6 +16,24 @@
 
 	$payment_name = $_POST['payments'];
 	$delivery_instructions = $_POST['delivery_instructions'];
+
+	// Order Placed Time
+	$query = "SELECT order_placed_time FROM ORDERS WHERE order_id = $order_id";
+	$result = $conn->query($query);
+	$row = $result->fetch_assoc();
+	$order_placed_time = $row['order_placed_time'];
+
+	// Time of Delivery
+	$query = "SELECT delivery_time FROM ORDERS WHERE order_id = $order_id";
+	$result = $conn->query($query);
+	$row = $result->fetch_assoc();
+	$delivery_time = $row['delivery_time'];
+
+	// Order Placed Date (echo is the same as below)
+	$query = "SELECT order_placed_date FROM ORDERS WHERE order_id = $order_id";
+	$result = $conn->query($query);
+	$row = $result->fetch_assoc();
+	$order_placed_date = $row['order_placed_date'];
 
 	// find random deliverer
 	$insert = "SELECT * FROM USER WHERE user_type='d' ORDER BY RAND ( ) LIMIT 1";
@@ -81,8 +100,8 @@
 			<div>Deliverer's Name: <input type='text' readonly value="<?php echo $deliverer_first; echo " "; echo $deliverer_last; ?>"/></div>
 
 			<div>Number of Items: <input type='text' readonly value="<?php echo $last_name; ?>"/></div>
-			<div>Time Order Placed: <input type='text' readonly value="<?php echo date("h:i:sa"); ?>"/></div>
-			<div>Time of Delivery: <input type='text' readonly value="<?php echo $username; ?>"/></div>
+			<div>Time Order Placed: <input type='text' readonly value="<?php echo $order_placed_time; ?>"/></div>
+			<div>Time of Delivery: <input type='text' readonly value="<?php echo $delivery_time; ?>"/></div>
 
 			<input type="button" onclick="window.location.href = '../buyer.php';" value="Home"/>
 		</form>
