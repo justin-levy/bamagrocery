@@ -30,9 +30,16 @@
 
 		if ($user_type == 'b' || $user_type == 'buyer') {
 			echo 'Buyer';
+			$query = "SELECT * FROM BUYER WHERE username ='$inUsername'";
+			$result = $conn->query($query);
+			if($result->num_rows == 0) {
+				header( "Location: ../register/address.php?submit=Buyer&username=$inUsername&phone=" );
+				exit ;
+			}
+			
 			$_SESSION['username'] = $username;
 			header( "Location: buyer/buyer.php" );
-		exit ;
+			exit ;
 		}
 		if ($user_type == 'd' || $user_type == 'deliverer') {
 			echo 'Deliverer';
@@ -41,8 +48,15 @@
 		}
 		if ($user_type == 'm' || $user_type == 'manager') {
 			echo 'Manager';
+			$query = "SELECT * FROM MANAGES WHERE username ='$inUsername'";
+			$result = $conn->query($query);
+			if($result->num_rows == 0) {
+				header( "Location: register_manager.php?username=$username" );
+				exit ;
+			}
 			$_SESSION['username'] = $username;
 			header( "Location: manager/manager.php" );
+			exit ;
 		}
 ?>
 </h1>

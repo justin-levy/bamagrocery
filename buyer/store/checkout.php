@@ -51,7 +51,7 @@
 						}
 					}
 					else {
-						header( "Location: new_payment.php" );
+						header( "Location: ../new_payment.php" );
 						exit ;
 					}
 				?>

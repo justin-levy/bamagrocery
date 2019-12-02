@@ -34,8 +34,10 @@
 						while ($row = $result->fetch_assoc()) {
 							$order_id = $row['order_id'];
 							$order_placed_date = $row['order_placed_date'];
+							echo strlen($order_placed_date);
 							$order_placed_time = $row['order_placed_time'];
 							$delivery_time = $row['delivery_time'];
+							echo strlen($delivery_time);
 							
 							$total_price = 0.00;
 							$total_items = 0;

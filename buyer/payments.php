@@ -58,7 +58,7 @@
 					$conn->close();
 				?>
 			</table>
-			<input type="submit"  value="Confirm Order"/>
+			<input type="button" onclick="window.location.href = 'store/checkout.php';" value="Checkout"/>
 			<input type="button" onclick="window.location.href = 'new_payment.php';" value="Use Different Payment"/>
 			<input type="button" onclick="window.location.href = 'buyer.php';" value="Back"/>
 		</form>

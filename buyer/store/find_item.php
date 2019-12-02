@@ -7,6 +7,10 @@
 		<?php
 			session_start();
 			$username = $_SESSION['username'];
+			if ($_SESSION['order_id'] == "") {
+				header( "Location: ../list_stores.php" );
+				exit ;
+			}
 		?>
 		<form method="" action="">
 			<input type="button" onclick="window.location.href = 'items_list.php?food_group=Beverages';" value="Beverages"/>
