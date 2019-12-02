@@ -33,7 +33,7 @@
 			$query = "SELECT * FROM BUYER WHERE username ='$inUsername'";
 			$result = $conn->query($query);
 			if($result->num_rows == 0) {
-				header( "Location: ../register/address.php?submit=Buyer&username=$inUsername&phone=" );
+				header( "Location: register/address.php?submit=Buyer&username=$inUsername&phone=" );
 				exit ;
 			}
 			
@@ -51,7 +51,7 @@
 			$query = "SELECT * FROM MANAGES WHERE username ='$inUsername'";
 			$result = $conn->query($query);
 			if($result->num_rows == 0) {
-				header( "Location: register_manager.php?username=$username" );
+				header( "Location: register/register_manager.php?username=$username" );
 				exit ;
 			}
 			$_SESSION['username'] = $username;
