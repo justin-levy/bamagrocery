@@ -81,7 +81,7 @@
 		<form method="POST" action="update_buyer.php">
 			<form action='' method='post'>
 			<div>Username: <input type='text' name='username' required maxlength="30" readonly value="<?php echo $username; ?>"/></div>
-			<div>Email: <input type='email' name='email' required maxlength="50" value="<?php echo $email; ?>"/></div>
+			<div>Email: <input type='email' name='email' pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$" required maxlength="50" value="<?php echo $email; ?>"/></div>
 			<div>First Name: <input type='text' name='first_name' required maxlength="30" readonly value="<?php echo $first_name; ?>"/></div>
 			<div>Last Name: <input type='text' name='last_name' required maxlength="30" readonly value="<?php echo $last_name; ?>"/></div>
 			<div>Phone Number: <input type='text' name='phone' pattern="[0-9]+" required minlength=\"10\" maxlength=\"10\" value="<?php echo $phone; ?>"/></div>
@@ -127,7 +127,7 @@
 							$account_number = $row["account_number"];
 							$routing_number = $row["routing_number"];
 				?>
-							<option value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo "checked"; ?>><?php echo $payment_name; ?> - <?php echo $account_number; ?></option>
+							<option value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo " selected=\"selected\""; ?>><?php echo $payment_name; ?> - <?php echo $account_number; ?></option>
 				<?php
 						}
 					}
