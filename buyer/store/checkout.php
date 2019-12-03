@@ -56,7 +56,7 @@
 					}
 				?>
 			</select></div>
-			<div>Delivery Time (in minutes, for ASAP leave the field blank): <input type="text" min="0" pattern="[0-9]+" name="delivery_time" placeholder="ASAP"/>
+			<div>Delivery Time (in minutes, for ASAP leave the field blank, max of 59 minutes): <input type="text" min="0" max="59" pattern="[0-9]+" name="delivery_time" placeholder="ASAP"/>
 			</div>
 			<div>Total Price: <input type='text' name='price' value="<?php
 				$total_price = 0.00;
