@@ -15,7 +15,7 @@
 		$row = $result->fetch_assoc();
 		$default_payment_name = $row['default_payment'];
 	}
-	
+
 	$query = "SELECT * FROM SELECTITEM WHERE order_id=$order_id";
 	$result = $conn->query($query);
 	if ($result->num_rows == 0) {
@@ -30,7 +30,7 @@
 	</head>
 	<body>
 		<h1>Checkout</h1>
-	
+
 		<form method="POST" action="complete_order.php">
 			<div>Payments: <select name="payments">
 				<?php
@@ -43,11 +43,11 @@
 							$account_number = $row["account_number"];
 							$routing_number = $row["routing_number"];
 				?>
-					
+
 					<option value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo "selected=\"selected\""; ?> required>
 					<?php echo $payment_name; ?>
 					</option>
-							
+
 				<?php
 						}
 					}
@@ -64,12 +64,12 @@
 					$row = $result->fetch_assoc();
 					$opening_time = $row['opening_time'];
 					$closing_time = $row['closing_time'];
-					
-					$closing_time = date ("H:i:s", strtotime('+12 hours',strtotime($curr_time)));
-					
+
+					$closing_time = date ("G:i:s", strtotime('+12 hours',strtotime("$closing_time AM")));
+
 					//echo $opening_time . " " . $closing_time;
 					$curr_time = date("H:i:s");
-					
+
 					$option_count = 0;
 				?>
 			<select name="delivery_time">
@@ -78,49 +78,49 @@
 						$option_count ++;
 					}
 				?>
-			
+
 				<?php if (date ("H:i:s", strtotime('+1 hour',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+1 hour',strtotime($curr_time))) < $closing_time) {
 						echo "<option value=\"1\" default>1 Hour</option>";
 						$option_count ++;
 					}
 				?>
-			
+
 				<?php if (date ("H:i:s", strtotime('+2 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+2 hours',strtotime($curr_time))) < $closing_time) {
 						echo "<option value=\"2\" default>2 Hours</option>";
 						$option_count ++;
 					}
 				?>
-			
+
 				<?php if (date ("H:i:s", strtotime('+5 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+5 hours',strtotime($curr_time))) < $closing_time) {
 						echo "<option value=\"5\" default>5 Hours</option>";
 						$option_count ++;
 					}
 				?>
-				
+
 				<?php if (date ("H:i:s", strtotime('+10 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+10 hours',strtotime($curr_time))) < $closing_time) {
 						echo "<option value=\"10\" default>10 Hours</option>";
 						$option_count ++;
 					}
 				?>
-				
+
 				<?php if (date ("H:i:s", strtotime('+12 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+12 hours',strtotime($curr_time))) < $closing_time) {
 						echo "<option value=\"12\" default>12 Hours</option>";
 						$option_count ++;
 					}
 				?>
-			
+
 				<?php if (date ("H:i:s", strtotime('+24 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+24 hours',strtotime($curr_time))) < $closing_time) {
 						echo "<option value=\"24\" default>24 Hours</option>";
 						$option_count ++;
 					}
-					
-					
+
+
 					if ($option_count == 0) {
 						header( "Location: ../buyer.php?error=Store%20Closed!" );
 						exit ;
 					}
 				?>
-			
+
 			</select>
 			</div>
 			<div>Total Price: <input type='text' name='price' readonly value="<?php
@@ -137,7 +137,7 @@
 					}
 				}
 				echo $total_price;
-				
+
 			?>"/></div>
 			<div>Delivery Instructions: <input type='text' name='delivery_instructions' pattern="[a-zA-Z0-9 ]+" maxlength="200"/></div>
 			<input type="submit"  value="Finalize Order"/>

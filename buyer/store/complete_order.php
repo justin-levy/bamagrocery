@@ -24,7 +24,7 @@
 	$deliverer_username = $row['username'];
 	$deliverer_first = $row['first_name'];
 	$deliverer_last = $row['last_name'];
-	
+
 	// deliveredby
 	$insert = "INSERT INTO DELIVEREDBY (order_id, deliverer_username, delivery_time, delivery_date, is_delivered) VALUE (?, ?, NULL, NULL, 0);";
 	$stmt = $conn->prepare($insert);
@@ -36,6 +36,7 @@
 	$stmt = $conn->prepare($insert);
 	$stmt->bind_param("is", $order_id, $username);
 	$stmt->execute();
+	echo $order_id;
 
 	// update orders
 	$insert = "UPDATE ORDERS SET order_placed_time = CURRENT_TIME WHERE order_id = ?;";
@@ -64,9 +65,9 @@
 	$stmt = $conn->prepare($insert);
 	$stmt->bind_param("i", $order_id);
 	$stmt->execute();
-	
-	
-	
+
+
+
 	// Order Placed Time
 	$query = "SELECT order_placed_time FROM ORDERS WHERE order_id = $order_id";
 	$result = $conn->query($query);
@@ -87,17 +88,17 @@
 	$row = $result->fetch_assoc();
 	$order_placed_date = $row['order_placed_date'];
 	//echo strlen($order_placed_date);
-	
-	
-	
-	
+
+
+
+
 	if ($delivery_time == "00:00:00") {
 		//echo "ZERO";
 		$delivery_time = "ASAP";
 	}
 
-	
-	
+
+
 	$total_quantity = 0;
 	$query = "SELECT SELECTITEM.quantity, listed_price FROM SELECTITEM, ITEM WHERE SELECTITEM.item_id = ITEM.item_id AND order_id=$order_id";
 	$result = $conn->query($query);
@@ -107,10 +108,10 @@
 		}
 	}
 	//echo $total_quantity;
-	
-	
-	
-	
+
+
+
+
 	$_SESSION['order_id'] = "";
 	$conn->close();
 
@@ -143,7 +144,7 @@
 				if ($delivery_time[7] == 1) echo " hour";
 				else echo " hours";
 			}
-			
+
 			?>"/></div>
 
 			<input type="button" onclick="window.location.href = '../buyer.php';" value="Home"/>

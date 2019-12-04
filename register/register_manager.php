@@ -26,8 +26,8 @@
 							$closing_time = $row["closing_time"];
 							$phone = $row["phone"];
 				?>
-							<option value="<?php echo $store_id?>"><?php echo $store_name?> - <?php 
-								$addr_query = "SELECT * FROM ADDRESS WHERE id=$store_id";
+							<option value="<?php echo $address_id?>"><?php echo $store_name?> - <?php
+								$addr_query = "SELECT * FROM ADDRESS WHERE id=$address_id";
 								$addr_result = $conn->query($addr_query);
 								$addr_data = $addr_result->fetch_assoc();
 								echo $addr_data['street'];

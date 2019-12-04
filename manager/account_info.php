@@ -21,7 +21,7 @@
 	//echo $first_name;
 	//echo $last_name;
 	//echo $email;
-	
+
 	$select = "SELECT * FROM MANAGES WHERE username=?;";
 	$stmt = $conn->prepare($select);
 	$stmt->bind_param("s", $username);
@@ -30,7 +30,7 @@
 	$row = $res->fetch_assoc();
 	$address_id = $row['store_address'];
 	//echo $address_id;
-	
+
 	$select = "SELECT * FROM ADDRESS WHERE id=?;";
 	$stmt = $conn->prepare($select);
 	$stmt->bind_param("i", $address_id);
@@ -39,7 +39,7 @@
 	$row = $res->fetch_assoc();
 	$store_address = $row['street'];
 	//echo $store_address;
-	
+
 	$select = "SELECT * FROM GROCERYSTORE WHERE address_id=?;";
 	$stmt = $conn->prepare($select);
 	$stmt->bind_param("i", $address_id);
@@ -65,11 +65,11 @@
 			<div>Username: <input type='text' name='username' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $username; ?>"/></div>
 			<div>First Name: <input type='text' name='first_name' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $first_name; ?>"/></div>
 			<div>Last Name: <input type='text' name='last_name' readonly disabled="disabled" style="background: #d4d4d4;" value="<?php echo $last_name; ?>"/></div>
-			
+
 			<div>Email: <input type='email' name='email' pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$" required maxlength="50" value="<?php echo $email; ?>"/></div>
 			<div>Phone Number: <input type='text' name='phone' pattern="[0-9]+" required minlength=\"10\" maxlength=\"10\" value="<?php echo $phone; ?>"/></div>
-			
-			<div>Managed Grocery Store: 
+
+			<div>Managed Grocery Store:
 			<select name="store">
 			<?php
 					$query = "SELECT * FROM GROCERYSTORE";
@@ -83,8 +83,8 @@
 							$closing_time = $row["closing_time"];
 							$phone = $row["phone"];
 				?>
-							<option value="<?php echo $address_id?>" <?php if ($store_id == $def_store_id) echo " selected=\"selected\""; ?>><?php echo $store_name?> - <?php 
-								$addr_query = "SELECT * FROM ADDRESS WHERE id=$store_id";
+							<option value="<?php echo $address_id?>" <?php if ($store_id == $def_store_id) echo " selected=\"selected\""; ?>><?php echo $store_name?> - <?php
+								$addr_query = "SELECT * FROM ADDRESS WHERE id=$address_id";
 								$addr_result = $conn->query($addr_query);
 								$addr_data = $addr_result->fetch_assoc();
 								echo $addr_data['street'];
