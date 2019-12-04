@@ -139,6 +139,16 @@
 				echo $total_price;
 				
 			?>"/></div>
+			<div>Total Number of Items<?php
+				$total_quantity = 0;
+				$query = "SELECT SELECTITEM.quantity, listed_price FROM SELECTITEM, ITEM WHERE SELECTITEM.item_id = ITEM.item_id AND order_id=$order_id";
+				$result = $conn->query($query);
+				if ($result->num_rows != 0) {
+					while ($row = $result->fetch_assoc()) {
+						$total_quantity = $total_quantity + $row['quantity'];
+					}
+				}
+			?></div>
 			<div>Delivery Instructions: <input type='text' name='delivery_instructions' pattern="[a-zA-Z0-9 ]+" maxlength="200"/></div>
 			<input type="submit"  value="Finalize Order"/>
 			<input type="button" onclick="window.location.href = 'store_home.php';" value="Back"/>
