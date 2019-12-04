@@ -2,6 +2,7 @@
 	session_start();
 	$username = $_SESSION['username'];
 	$order_id = $_SESSION['order_id'];
+	date_default_timezone_set("America/Chicago");
 
 	$conn = new mysqli("localhost:8889", "root", "root", "bamagrocery");
 	if ($conn->connect_error) {
@@ -65,19 +66,59 @@
 					$closing_time = $row['closing_time'];
 					
 					//echo $opening_time . " " . $closing_time;
-					$curr_time = "12:00:00";
-					if ($curr_time > $opening_time && $curr_time < $closing_time) {
-						echo "work";
-					}
+					$curr_time = date("H:i:s");
+					
+					$option_count = 0;
 				?>
 			<select name="delivery_time">
-				<option value="0" default>ASAP</option>
-				<option value="1">1 Hour</option>
-				<option value="2">2 Hours</option>
-				<option value="5">5 Hours</option>
-				<option value="10">10 Hours</option>
-				<option value="12">12 Hours</option>
-				<option value="24">24 Hours</option>
+				<?php if ($curr_time > $opening_time && $curr_time < $closing_time) {
+						echo "<option value=\"0\" default>ASAP</option>";
+						$option_count ++;
+					}
+				?>
+			
+				<?php if (date ("H:i:s", strtotime('+1 hour',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+1 hour',strtotime($curr_time))) < $closing_time) {
+						echo "<option value=\"1\" default>1 Hour</option>";
+						$option_count ++;
+					}
+				?>
+			
+				<?php if (date ("H:i:s", strtotime('+2 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+2 hours',strtotime($curr_time))) < $closing_time) {
+						echo "<option value=\"2\" default>2 Hours</option>";
+						$option_count ++;
+					}
+				?>
+			
+				<?php if (date ("H:i:s", strtotime('+5 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+5 hours',strtotime($curr_time))) < $closing_time) {
+						echo "<option value=\"5\" default>5 Hours</option>";
+						$option_count ++;
+					}
+				?>
+				
+				<?php if (date ("H:i:s", strtotime('+10 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+10 hours',strtotime($curr_time))) < $closing_time) {
+						echo "<option value=\"10\" default>10 Hours</option>";
+						$option_count ++;
+					}
+				?>
+				
+				<?php if (date ("H:i:s", strtotime('+12 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+12 hours',strtotime($curr_time))) < $closing_time) {
+						echo "<option value=\"12\" default>12 Hours</option>";
+						$option_count ++;
+					}
+				?>
+			
+				<?php if (date ("H:i:s", strtotime('+24 hours',strtotime($curr_time))) > $opening_time && date ("H:i:s", strtotime('+24 hours',strtotime($curr_time))) < $closing_time) {
+						echo "<option value=\"24\" default>24 Hours</option>";
+						$option_count ++;
+					}
+					
+					
+					if ($option_count == 0) {
+						header( "Location: ../buyer.php?error=Store%20Closed!" );
+						exit ;
+					}
+				?>
+			
 			</select>
 			</div>
 			<div>Total Price: <input type='text' name='price' readonly value="<?php
