@@ -65,6 +65,8 @@
 					$opening_time = $row['opening_time'];
 					$closing_time = $row['closing_time'];
 					
+					$closing_time = date ("H:i:s", strtotime('+12 hours',strtotime($curr_time)));
+					
 					//echo $opening_time . " " . $closing_time;
 					$curr_time = date("H:i:s");
 					
