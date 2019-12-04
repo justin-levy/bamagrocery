@@ -36,7 +36,6 @@
 	$stmt = $conn->prepare($insert);
 	$stmt->bind_param("is", $order_id, $username);
 	$stmt->execute();
-	echo $order_id;
 
 	// update orders
 	$insert = "UPDATE ORDERS SET order_placed_time = CURRENT_TIME WHERE order_id = ?;";
