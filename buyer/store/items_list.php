@@ -51,7 +51,7 @@
 					<td><?php echo $description; ?></td>
 					<td><?php echo $exp_date; ?></td>
 					<td><?php echo $listed_price; ?></td>
-					<td><?php echo $quantity; ?></td>
+					<td><?php if ($quantity) echo "yes"; else echo "no" ?></td>
 				</tr>
 							
 				<?php

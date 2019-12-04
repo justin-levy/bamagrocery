@@ -57,6 +57,19 @@
 				?>
 			</select></div>
 			<div>Delivery Time:
+				<?php
+					$query = "SELECT * FROM GROCERYSTORE, ORDERFROM WHERE order_id = $order_id AND ORDERFROM.store_id = GROCERYSTORE.store_id";
+					$result = $conn->query($query);
+					$row = $result->fetch_assoc();
+					$opening_time = $row['opening_time'];
+					$closing_time = $row['closing_time'];
+					
+					//echo $opening_time . " " . $closing_time;
+					$curr_time = "12:00:00";
+					if ($curr_time > $opening_time && $curr_time < $closing_time) {
+						echo "work";
+					}
+				?>
 			<select name="delivery_time">
 				<option value="0" default>ASAP</option>
 				<option value="1">1 Hour</option>
