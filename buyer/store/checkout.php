@@ -56,9 +56,18 @@
 					}
 				?>
 			</select></div>
-			<div>Delivery Time (in minutes, for ASAP leave the field blank, max of 59 minutes): <input type="text" min="0" max="59" pattern="[0-9]+" name="delivery_time" placeholder="ASAP"/>
+			<div>Delivery Time:
+			<select name="delivery_time">
+				<option value="0" default>ASAP</option>
+				<option value="1">1 Hour</option>
+				<option value="2">2 Hours</option>
+				<option value="5">5 Hours</option>
+				<option value="10">10 Hours</option>
+				<option value="12">12 Hours</option>
+				<option value="24">24 Hours</option>
+			</select>
 			</div>
-			<div>Total Price: <input type='text' name='price' value="<?php
+			<div>Total Price: <input type='text' name='price' readonly value="<?php
 				$total_price = 0.00;
 				$query = "SELECT SELECTITEM.quantity, listed_price FROM SELECTITEM, ITEM WHERE SELECTITEM.item_id = ITEM.item_id AND order_id=$order_id";
 				$result = $conn->query($query);

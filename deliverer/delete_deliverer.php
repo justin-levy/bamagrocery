@@ -13,7 +13,7 @@
 	$stmt->bind_param("s", $username);
 	$stmt->execute();
 	$res = $stmt->get_result();
-	if ($res->row_nums != 0) {
+	if ($res->num_rows != 0) {
 		$conn->close();
 		header( "Location: deliverer.php?error=Cannot%20Delete%20Account%20With%20Outstanidng%20Deliveries" );
 		exit ;

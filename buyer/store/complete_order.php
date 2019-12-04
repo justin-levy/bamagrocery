@@ -136,7 +136,12 @@
 				echo $delivery_time;
 			}
 			else {
-				echo $delivery_time[6] . $delivery_time[7] . " minutes";
+				if ($delivery_time[6] != 0) {
+					echo $delivery_time[6];
+				}
+				echo $delivery_time[7];
+				if ($delivery_time[7] == 1) echo " hour";
+				else echo " hours";
 			}
 			
 			?>"/></div>

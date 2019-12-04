@@ -16,7 +16,7 @@
 	<body>
 		<h1>Assignments</h1>
 	
-		<form method="" action="">			
+		<form method="POST" action="view_order.php">			
 			<table border="1">
 				<tr>
 					<th>Store Name</th>
@@ -28,7 +28,7 @@
 					<th>Total Number of Items</th>
 				</tr>
 				<?php					
-					$query = "SELECT * FROM ORDERS, DELIVEREDBY WHERE ORDERS.order_id = DELIVEREDBY.order_id AND is_delivered=0 AND DELIVEREDBY.deliverer_username='$username'";
+					$query = "SELECT ORDERS.order_id, order_placed_date, order_placed_time, ORDERS.delivery_time FROM ORDERS, DELIVEREDBY WHERE ORDERS.order_id = DELIVEREDBY.order_id AND is_delivered=0 AND DELIVEREDBY.deliverer_username='$username'";
 					$result = $conn->query($query);
 					if ($result->num_rows > 0) {
 						while ($row = $result->fetch_assoc()) {
@@ -57,7 +57,7 @@
 							
 				?>
 				<tr>
-					<td><?php 
+					<td><input type="radio" name="order_id" value="<?php echo $order_id?>" required><?php 
 								$addr_query = "SELECT * FROM GROCERYSTORE, ORDERFROM WHERE ORDERFROM.store_id=GROCERYSTORE.store_id AND ORDERFROM.order_id=$order_id";
 								$addr_result = $conn->query($addr_query);
 								$addr_data = $addr_result->fetch_assoc();
@@ -66,7 +66,19 @@
 					<td><?php echo $order_id; ?></td>
 					<td><?php echo $order_placed_date; ?></td>
 					<td><?php echo $order_placed_time; ?></td>
-					<td><?php echo $delivery_time; ?></td>
+					<td><?php 
+					if ($delivery_time == "00:00:00") {
+						echo "ASAP";
+					}
+					else {
+						if ($delivery_time[6] != 0) {
+							echo $delivery_time[6];
+						}
+						echo $delivery_time[7];
+						if ($delivery_time[7] == 1) echo " hour";
+						else echo " hours";
+					}
+					?></td>
 					<td><?php echo $total_price; ?></td>
 					<td><?php echo $total_items; ?></td>
 				</tr>
@@ -78,6 +90,7 @@
 					$conn->close();
 				?>
 			
+			<input type="submit" value="View Order Details"/>
 			<input type="button" onclick="window.location.href = 'deliverer.php';" value="Back"/>
 		</form>
 

@@ -25,10 +25,10 @@
 		<form method="" action="">			
 			<table border="1">
 				<tr>
-					<th>Username</th>
 					<th>Payment Name</th>
 					<th>Account Number</th>
 					<th>Routing Number</th>
+					<th>Default</th>
 				</tr>
 				<?php
 					$query = "SELECT * FROM PAYMENTS WHERE username ='$username'";
@@ -42,10 +42,10 @@
 				?>
 				<tr>
 					<td><input type="radio" name="payment" value="<?php echo $payment_name?>" <?php if ($payment_name == $default_payment_name) echo "checked"; ?> required>
-					<?php echo $username; ?></td>
-					<td><?php echo $payment_name; ?></td>
+					<?php echo $payment_name; ?></td>
 					<td><?php echo $account_number; ?></td>
 					<td><?php echo $routing_number; ?></td>
+					<td><?php if ($payment_name == $default_payment_name) echo "yes"; else echo "no"; ?></td>
 				</tr>
 							
 				<?php
